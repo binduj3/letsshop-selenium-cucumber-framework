@@ -18,6 +18,7 @@ public class LoginPage extends BasePage {
     public WebElement loginButton;
 
     public void login(String email, String password) {
+        log.info("Logging in as {}", email);
         sendText(email, emailField);
         sendText(password, passwordField);
         click(loginButton);

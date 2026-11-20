@@ -16,7 +16,6 @@ import static io.github.binduj3.letsshop.utils.DriverManager.getDriver;
 
 public class CommonMethods {
 
-
     public void sendText(String text, WebElement element){
         element.clear();
         element.sendKeys(text);
