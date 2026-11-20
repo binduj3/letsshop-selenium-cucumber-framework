@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class BasePage extends CommonMethods {
 
     protected final Logger log = LogManager.getLogger(getClass());
-    BasePage() {
+    protected BasePage() {
         PageFactory.initElements(DriverManager.getDriver(),this);
     }
 }

@@ -20,6 +20,7 @@
         <rest-assured.version>6.3.0</rest-assured.version>
         <surefire.version>3.6.1</surefire.version>
         <log4j.version>2.26.1</log4j.version>
+        <jackson.version>3.3.0</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -49,7 +50,6 @@
             <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
-
         <!-- BDD on the JUnit Platform -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -101,6 +101,13 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- JSON: Cucumber reports, test data , API objects -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
