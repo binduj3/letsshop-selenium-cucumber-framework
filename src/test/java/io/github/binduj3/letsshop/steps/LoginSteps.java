@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LoginSteps {
 
     private final PageManager pages;
-    private final TestContext content;
+    private final TestContext context;
 
-    public LoginSteps(PageManager pages, TestContext content) {
+    public LoginSteps(PageManager pages, TestContext context) {
         this.pages = pages;
-        this.content=content;
+        this.context =context;
     }
 
     @Given("the user is on the login page")
@@ -27,7 +27,7 @@ public class LoginSteps {
     @When("the user logs in with valid credentials")
     public void theUserLogsInWithValidCredentials() {
         String email = ConfigReader.read("email");
-        content.setRegisteredEmail(email);
+        context.setRegisteredEmail(email);
         pages.loginPage().login(email, ConfigReader.read("LETSSHOP_PASSWORD"));
     }
 
