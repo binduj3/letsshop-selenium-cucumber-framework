@@ -5,11 +5,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.binduj3.letsshop.utils.CommonMethods;
 import io.github.binduj3.letsshop.utils.ConfigReader;
-import io.github.binduj3.letsshop.utils.DriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static io.github.binduj3.letsshop.utils.DriverManager.*;
+import static io.github.binduj3.letsshop.driver.DriverManager.*;
 
 /**
  * Every scenario gets its own browser on its own thread, opened here and always closed here.
@@ -17,7 +16,7 @@ import static io.github.binduj3.letsshop.utils.DriverManager.*;
  * or you'll open a second browser.
  */
 public class Hooks extends CommonMethods {
-    private static final Logger log = LogManager.getLogger(DriverManager.class);
+    private static final Logger log = LogManager.getLogger(Hooks.class);
     @Before
     public void setUp(Scenario scenario) {
         log.info("Before Scenario,opening browser {}", scenario.getName());

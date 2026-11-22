@@ -1,7 +1,4 @@
-package io.github.binduj3.letsshop.utils;
-
-import io.github.binduj3.letsshop.pages.DashboardPage;
-import io.github.binduj3.letsshop.pages.LoginPage;
+package io.github.binduj3.letsshop.pages;
 
 /**
  * Holds the page objects for ONE scenario.

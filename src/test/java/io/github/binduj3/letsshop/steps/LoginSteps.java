@@ -3,17 +3,20 @@ package io.github.binduj3.letsshop.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.binduj3.letsshop.context.TestContext;
 import io.github.binduj3.letsshop.utils.ConfigReader;
-import io.github.binduj3.letsshop.utils.PageManager;
+import io.github.binduj3.letsshop.pages.PageManager;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginSteps {
 
     private final PageManager pages;
+    private final TestContext content;
 
-    public LoginSteps(PageManager pages) {
+    public LoginSteps(PageManager pages, TestContext content) {
         this.pages = pages;
+        this.content=content;
     }
 
     @Given("the user is on the login page")
@@ -23,7 +26,9 @@ public class LoginSteps {
 
     @When("the user logs in with valid credentials")
     public void theUserLogsInWithValidCredentials() {
-        pages.loginPage().login(ConfigReader.read("email"), ConfigReader.read("LETSSHOP_PASSWORD"));
+        String email = ConfigReader.read("email");
+        content.setRegisteredEmail(email);
+        pages.loginPage().login(email, ConfigReader.read("LETSSHOP_PASSWORD"));
     }
 
     @Then("the user is taken to dashboard page")

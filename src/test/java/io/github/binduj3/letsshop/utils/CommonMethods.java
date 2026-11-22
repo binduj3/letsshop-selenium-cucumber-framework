@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
-import static io.github.binduj3.letsshop.utils.DriverManager.getDriver;
+import static io.github.binduj3.letsshop.driver.DriverManager.getDriver;
 
 public class CommonMethods {
 

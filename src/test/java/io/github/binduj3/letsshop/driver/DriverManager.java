@@ -1,5 +1,6 @@
-package io.github.binduj3.letsshop.utils;
+package io.github.binduj3.letsshop.driver;
 
+import io.github.binduj3.letsshop.utils.ConfigReader;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
