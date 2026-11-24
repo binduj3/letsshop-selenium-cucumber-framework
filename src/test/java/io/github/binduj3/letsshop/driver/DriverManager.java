@@ -95,6 +95,10 @@ public final class DriverManager {
         if (headless) {
             options.addArguments("--headless=new");
         }
+        options.addArguments(
+                "--disable-background-timer-throttling",      // keep timers running in background
+                "--disable-backgrounding-occluded-windows",   // keep drawing when the window is covered
+                "--disable-renderer-backgrounding");          // don't lower the page's priority
         return options;
     }
 

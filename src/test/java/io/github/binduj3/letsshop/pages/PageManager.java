@@ -12,6 +12,10 @@ public class PageManager {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
+    private CartPage cartPage;
+    private CheckoutPage checkoutPage;
+    private ConfirmationPage confirmationPage;
+    private OrderHistoryPage orderHistoryPage;
 
     public LoginPage loginPage() {
         if (loginPage == null) {
@@ -26,5 +30,33 @@ public class PageManager {
         }
 
         return dashboardPage;
+    }
+
+    public CartPage cartPage() {
+        if (cartPage == null) {
+            cartPage = new CartPage();
+        }
+
+        return cartPage;
+    }
+    public CheckoutPage checkoutPage() {
+        if (checkoutPage == null) {
+            checkoutPage = new CheckoutPage();
+        }
+        return checkoutPage;
+    }
+
+    public ConfirmationPage confirmationPage() {
+        if (confirmationPage == null) {
+            confirmationPage = new ConfirmationPage();
+        }
+        return confirmationPage;
+    }
+
+    public OrderHistoryPage orderHistoryPage() {
+        if (orderHistoryPage == null) {
+            orderHistoryPage = new OrderHistoryPage();
+        }
+        return orderHistoryPage;
     }
 }

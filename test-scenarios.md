@@ -8,8 +8,6 @@
 7. Register with existing email 
 8. Password strength rules
 
-## Registration
-
 | ID | Scenario | Type | Priority | Layer | Status | Defect ID |
 |---|---|---|---|---|---|---|
 | REG-01 | All fields are displayed and the Register button is enabled | Positive | P3 | UI | Not run | |

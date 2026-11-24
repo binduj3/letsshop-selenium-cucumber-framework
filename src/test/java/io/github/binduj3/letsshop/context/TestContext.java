@@ -1,7 +1,10 @@
 package io.github.binduj3.letsshop.context;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Data shared between step classes within ONE scenario.
@@ -12,6 +15,7 @@ public class TestContext {
 
     private final List<String> orderIds = new ArrayList<>();
     private String registeredEmail;
+    public final Map<String, BigDecimal> productPrices = new LinkedHashMap<>();
 
     // --- order IDs (set on the confirmation page, checked in Order History)
     public void addOrderIds(List<String> ids) {
@@ -33,4 +37,27 @@ public class TestContext {
         }
         return registeredEmail;
     }
+
+    public void addProduct(String productName, BigDecimal price) {
+        productPrices.put(productName, price);
+        System.out.println(productPrices);
+    }
+
+    public List<String> getProducts() {
+        return List.copyOf(productPrices.keySet());
+    }
+
+    public BigDecimal getPrice(String productName) {
+        BigDecimal price = productPrices.get(productName);
+        if (price == null) {
+            throw new IllegalStateException("No price saved for '" + productName + "'");
+        }
+        return price;
+    }
+
+    public BigDecimal getExpectedTotal() {
+        return productPrices.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+
 }

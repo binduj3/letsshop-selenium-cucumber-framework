@@ -35,4 +35,11 @@ public class LoginSteps {
     public void theUserIsTakenToDashboardPage() {
         assertTrue(pages.dashboardPage().isDisplayed(), "Dashboard page is not displayed");
     }
+
+    @Given("the user is logged in")
+    public void theUserIsLoggedIn() {
+        String email = ConfigReader.read("email");
+        context.setRegisteredEmail(email);
+        pages.loginPage().login(email, ConfigReader.read("LETSSHOP_PASSWORD"));
+    }
 }

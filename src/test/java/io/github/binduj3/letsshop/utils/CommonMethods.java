@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -41,11 +42,15 @@ public class CommonMethods {
     }
 
 
-    public void click(WebElement element){
+    public void click(WebElement element) {
+        waitForSpinnerToDisappear();
         waitForElementToBeClickAble(element);
-        element.click();
+        int seconds = Integer.parseInt(ConfigReader.readOrDefault("spinnerWait", "40"));
+        new WebDriverWait(getDriver(), Duration.ofSeconds(seconds))
+                .withMessage("Click kept being intercepted for " + seconds + "s")
+                .ignoring(ElementClickInterceptedException.class)
+                .until(driver -> { element.click(); return true; });
     }
-
     public void click(WebElement element, boolean clickableAndOptionReady){
         if(clickableAndOptionReady){
             waitForOptionReadyAndClickable(element);
@@ -121,6 +126,30 @@ public class CommonMethods {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
+    }
+
+    public BigDecimal parsePrice(String price)
+    {
+        return  new BigDecimal(price.replaceAll("[^0-9.]", ""));
+    }
+
+       public void waitForSpinnerToDisappear() {
+        int seconds = Integer.parseInt(ConfigReader.readOrDefault("spinnerWait", "40"));
+        new WebDriverWait(getDriver(), Duration.ofSeconds(seconds))
+                .withMessage("Loading spinner still visible after " + seconds + "s")
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".ngx-spinner-overlay")));
+    }
+
+    public void waitForValueToBe(WebElement input, String expected) {
+        getwait()
+                .withMessage("Input value never became '" + expected + "'")
+                .until(driver -> expected.equalsIgnoreCase(input.getDomProperty("value").trim()));
+    }
+
+    public void waitForToast(String expectedText) {
+        getwait()
+                .withMessage("Toast '" + expectedText + "' did not appear")
+                .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("#toast-container .toast-message"), expectedText));
     }
  }
 
